@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Debasish Sau - Portfolio | Dayananda Sagar University">
+    <meta name="author" content="Debasish Sau">
+    <title>Debasish Sau | Colorful Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           CSS CUSTOM PROPERTIES (VIBRANT COLOR SCHEME)
+           ============================================ */
+        :root {
+            --primary-dark: #0a1929;      /* Very dark blue */
+            --primary: #0d47a1;          /* Deep blue */
+            --primary-light: #1565c0;
+            --accent: #42a5f5;           /* Bright accent blue */
+            --accent2: #7c4dff;          /* Purple accent */
+            --accent3: #ff6e40;          /* Warm orange accent */
+            --gradient-header: linear-gradient(135deg, #0a1929 0%, #0d47a1 50%, #1565c0 100%);
+            --gradient-card: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-contact: linear-gradient(135deg, #0d47a1, #1565c0);
+            --bg-body: linear-gradient(135deg, #e0f2fe 0%, #ede7f6 100%);
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-body);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ============================================
+           HEADER & NAVIGATION
+           ============================================ */
+        header {
+            background: var(--gradient-header);
+            color: white;
+            padding: 2.5rem 0 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+        }
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-img-header {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.3s;
+        }
+
+        .profile-img-header:hover {
+            transform: scale(1.05);
+        }
+
+        .header-text h1 {
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .college {
+            font-weight: 500;
+            color: #ffd54f;
+            margin-top: 0.2rem;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            background: rgba(255,255,255,0.15);
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ============================================
+           SECTIONS & SCROLL REVEAL
+           ============================================ */
+        main {
+            padding: 3rem 0;
+        }
+
+        section {
+            background: var(--white);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            border-bottom: 4px solid var(--accent2);
+            padding-bottom: 0.4rem;
+        }
+
+        h3 {
+            color: var(--primary-light);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        /* ============================================
+           ABOUT SECTION (GRID)
+           ============================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .about-image img {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .personal-details {
+            background: #f3e5f5; /* light purple tint */
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .personal-details ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e1bee7;
+            font-size: 0.95rem;
+        }
+
+        .personal-details ul li:last-child {
+            border-bottom: none;
+        }
+
+        .personal-details strong {
+            color: var(--primary);
+            width: 120px;
+            display: inline-block;
+        }
+
+        /* ============================================
+           EDUCATION SECTION
+           ============================================ */
+        .education-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .edu-card {
+            background: linear-gradient(135deg, #e8f5e9, #f3e5f5);
+            padding: 1.5rem;
+            border-left: 5px solid var(--accent3);
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .edu-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .edu-degree {
+            font-weight: 500;
+            color: var(--primary);
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        /* ============================================
+           SKILLS SECTION (COLORFUL TAG CLOUD)
+           ============================================ */
+        .skills-category {
+            margin-bottom: 1.8rem;
+        }
+
+        .skills-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .skill-tag {
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: default;
+        }
+
+        /* Different color backgrounds for skill tags to be colorful */
+        .skill-tag:nth-child(8n+1) { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
+        .skill-tag:nth-child(8n+2) { background: linear-gradient(135deg, #7c4dff, #651fff); }
+        .skill-tag:nth-child(8n+3) { background: linear-gradient(135deg, #ff6e40, #ff3d00); }
+        .skill-tag:nth-child(8n+4) { background: linear-gradient(135deg, #00bfa5, #00897b); }
+        .skill-tag:nth-child(8n+5) { background: linear-gradient(135deg, #ffa726, #fb8c00); }
+        .skill-tag:nth-child(8n+6) { background: linear-gradient(135deg, #ab47bc, #8e24aa); }
+        .skill-tag:nth-child(8n+7) { background: linear-gradient(135deg, #ef5350, #d32f2f); }
+        .skill-tag:nth-child(8n+8) { background: linear-gradient(135deg, #66bb6a, #43a047); }
+
+        .skill-tag:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 1.8rem;
+            background: white;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+
+        .project-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: #e8eaf6;
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .contact-info {
+            background: var(--gradient-contact);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .contact-item a {
+            color: #ffd54f;
+            text-decoration: underline;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem 1rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(66,165,245,0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #7c4dff, #42a5f5);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+
+        .form-feedback {
+            font-weight: 600;
+            text-align: center;
+            min-height: 1.5rem;
+        }
+
+        .success {
+            color: #2e7d32;
+        }
+
+        .error {
+            color: #c62828;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .footer-desc {
+            margin: 0.3rem 0 1rem;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .footer-links a:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           BACK TO TOP BUTTON
+           ============================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                text-align: center;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-links a {
+                width: 80%;
+            }
+            section {
+                padding: 1.8rem;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-img-header {
+                width: 120px;
+                height: 120px;
+            }
+            .header-text h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <div class="container header-container">
+            <img src="images/profile.jpg" alt="Debasish Sau" class="profile-img-header">
+            <div class="header-text">
+                <h1>Debasish Sau</h1>
+                <p class="subtitle">Computer Science Undergraduate</p>
+                <p class="college">📍 Dayananda Sagar University, Bengaluru</p>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">📖 About</a></li>
+                    <li><a href="#education">🎓 Education</a></li>
+                    <li><a href="#skills">💻 Skills</a></li>
+                    <li><a href="#projects">🚀 Projects</a></li>
+                    <li><a href="#contact">📞 Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container">
+            <!-- ABOUT SECTION -->
+            <section id="about" class="reveal">
+                <h2>About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="images/profile.jpg" alt="Debasish Sau Profile">
+                    </div>
+                    <div class="about-text">
+                        <p>Computer Science undergraduate at <strong>Dayananda Sagar University</strong> with strong knowledge of Data Structures and Algorithms using Java and Python, and a solid foundation in Object-Oriented Programming. Experienced in backend development with Java and Spring Boot, with a good understanding of full‑stack development concepts. Proficient in DBMS, Computer Networks, and Operating Systems. Also an Android application developer with hands‑on experience in building Java‑based mobile applications, and a strong interest in continuous learning and software development.</p>
+                        
+                        <div class="personal-details">
+                            <h3>Quick Info</h3>
+                            <ul>
+                                <li><strong>📍 Location:</strong> Bengaluru, Karnataka, India</li>
+                                <li><strong>📧 Email:</strong> debasishsau@gmail.com</li>
+                                <li><strong>📱 Phone:</strong> +91-9876543210</li>
+                                <li><strong>🔗 LinkedIn:</strong> linkedin.com/in/debasish-sau</li>
+                                <li><strong>💻 GitHub:</strong> github.com/debasish-sau</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDUCATION SECTION -->
+            <section id="education" class="reveal">
+                <h2>Education</h2>
+                <div class="education-list">
+                    <div class="edu-card">
+                        <h3>Dayananda Sagar University, Bengaluru</h3>
+                        <p class="edu-degree">B.Tech in Computer Science and Engineering (2023 – 2027)</p>
+                        <p><strong>CGPA:</strong> 7.53/10</p>
+                    </div>
+                    <div class="edu-card">
+                        <h3>Techno India Group Public School, Santiniketan</h3>
+                        <p class="edu-degree">Higher Secondary (12th) – 2022</p>
+                        <p><strong>Percentage:</strong> 62%</p>
+                    </div>
+                    <div class="edu-card">
+                        <h3>Holy Family School, Bhagalpur</h3>
+                        <p class="edu-degree">Secondary (10th) – 2020</p>
+                        <p><strong>Percentage:</strong> 72%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS SECTION -->
+            <section id="skills" class="reveal">
+                <h2>Technical Skills</h2>
+                
+                <div class="skills-category">
+                    <h3>💻 Programming Languages</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>⚙️ Backend & Frameworks</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Spring MVC</span>
+                        <span class="skill-tag">Spring Security</span>
+                        <span class="skill-tag">Hibernate</span>
+                        <span class="skill-tag">Fast API</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>🔗 Microservices & Messaging</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Spring Cloud</span>
+                        <span class="skill-tag">Eureka Discovery</span>
+                        <span class="skill-tag">API Gateway</span>
+                        <span class="skill-tag">OpenFeign</span>
+                        <span class="skill-tag">Resilience4j</span>
+                        <span class="skill-tag">Apache Kafka</span>
+                        <span class="skill-tag">RabbitMQ</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>🤖 AI & Advanced Tech</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Spring AI</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">Vector Databases</span>
+                        <span class="skill-tag">ML Basics</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>☁️ DevOps & Databases</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>🛠️ Tools & Frontend</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Maven</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">IntelliJ IDEA</span>
+                        <span class="skill-tag">React.js</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>📚 CS Fundamentals</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">DSA (Java)</span>
+                        <span class="skill-tag">OOP</span>
+                        <span class="skill-tag">Operating Systems</span>
+                        <span class="skill-tag">DBMS</span>
+                        <span class="skill-tag">Computer Networks</span>
+                        <span class="skill-tag">SDLC</span>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>🌟 Soft Skills</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag soft-skill">Problem Solving</span>
+                        <span class="skill-tag soft-skill">Analytical Thinking</span>
+                        <span class="skill-tag soft-skill">Communication</span>
+                        <span class="skill-tag soft-skill">Teamwork</span>
+                        <span class="skill-tag soft-skill">Time Management</span>
+                        <span class="skill-tag soft-skill">Agile</span>
+                        <span class="skill-tag soft-skill">Adaptability</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS SECTION -->
+            <section id="projects" class="reveal">
+                <h2>Projects</h2>
+                <div class="project-grid">
+                    <article class="project-card">
+                        <h4>📱 Android App (Java)</h4>
+                        <p>Built a fully functional mobile app with Java and Android SDK, integrating REST APIs and SQLite database.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Android</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <h4>🌐 Spring Boot Microservices</h4>
+                        <p>Developed a scalable e‑commerce backend with Spring Cloud, Eureka, API Gateway, and Kafka messaging.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">Kafka</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <h4>🤖 RAG Chatbot</h4>
+                        <p>Implemented a Retrieval‑Augmented Generation chatbot using Spring AI and OpenAI API with vector database.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Spring AI</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">Vector DB</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact" class="reveal">
+                <h2>Get In Touch</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>Contact Details</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div><strong>Email</strong><br>debasishsau@gmail.com</div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div><strong>Phone</strong><br>+91-9876543210</div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div><strong>Location</strong><br>Bengaluru, Karnataka, India</div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🔗</span>
+                            <div>
+                                <strong>Profiles</strong><br>
+                                <a href="https://www.linkedin.com/in/debasish-sau" target="_blank" rel="noopener">LinkedIn</a> |
+                                <a href="https://github.com/debasish-sau" target="_blank" rel="noopener">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="contactForm" class="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required minlength="2">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91-9876543210" pattern="[0-9]{10}">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your message..." required minlength="10"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">✉️ Send Message</button>
+                        <p id="formFeedback" class="form-feedback"></p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p class="footer-name">Debasish Sau</p>
+            <p class="footer-desc">Computer Science Undergraduate | Dayananda Sagar University</p>
+            <div class="footer-links">
+                <a href="mailto:debasishsau@gmail.com">📧 Email</a>
+                <a href="tel:+919876543210">📱 Call</a>
+                <a href="https://www.linkedin.com/in/debasish-sau" target="_blank" rel="noopener">💼 LinkedIn</a>
+                <a href="https://github.com/debasish-sau" target="_blank" rel="noopener">💻 GitHub</a>
+            </div>
+            <p class="copyright">&copy; 2025 Debasish Sau. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" title="Back to Top">↑</a>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // ============================================
+        // SCROLL REVEAL ANIMATION
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 120;
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('visible');
+                } else {
+                    el.classList.remove('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // ============================================
+        // BACK TO TOP BUTTON
+        // ============================================
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // ============================================
+        // CONTACT FORM HANDLING (DEMO)
+        // ============================================
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('formFeedback');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (!name || !email || !message) {
+                formFeedback.textContent = '❌ Please fill all required fields.';
+                formFeedback.className = 'form-feedback error';
+                return;
+            }
+            formFeedback.textContent = '✅ Message sent successfully! (demo)';
+            formFeedback.className = 'form-feedback success';
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
